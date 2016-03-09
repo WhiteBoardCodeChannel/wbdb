@@ -3,6 +3,7 @@ const jwtAuth = require(__dirname + '/../lib/jwt_auth');
 const jsonParser = require('body-parser').json();
 const Challenge = require(__dirname + '/../models/challenge');
 const Favorite = require(__dirname + '/../models/favorite');
+const User = require(__dirname + '/../models/user');
 const handleDBError = require(__dirname + '/../lib/handle_db_error');
 const favoriteRouter = module.exports = exports = express.Router();
 
@@ -37,6 +38,7 @@ favoriteRouter.post('/favorites', jwtAuth, jsonParser, (req, res) => {
 
 // Retrieves all challenges favorited by the user
 favoriteRouter.get('/favorites', jwtAuth, jsonParser, (req, res) => {
+  console.log(req.user._id);
   Favorite.find({ userId: req.user._id }).exec()
     .then((favorites) => {
       const favIds = favorites.map((fav) => fav.challengeId);

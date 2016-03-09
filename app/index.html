@@ -45,9 +45,10 @@
           </div>
           <div class="six columns">
               <button data-ng-if="!loggedIn" type="button" name="button" class="login" data-ui-sref="auth()">Login</button>
-              <button data-ng-click="logout()" data-ng-if="loggedIn" type="button" name="button" class="login" data-ui-sref="home()">Logout</button>
-
-              <a href="challenge.html"><input class="button-primary" value="Learn More" type="submit"></a>
+              <button data-ng-if="loggedIn" data-ng-click="logout()" type="button" name="button" class="login" data-ui-sref="home()">Logout</button>
+              <button data-ng-if="loggedIn && !isAdmin" type="button" name="button" class="login" data-ui-sref="user()">My Dashboard</button>
+              <button data-ng-if="loggedIn && isAdmin" type="button" name="button" class="login" data-ui-sref="admin()">Admin Dashboard</button>
+              <!-- <a href="challenge.html"><input class="button-primary" value="Learn More" type="submit"></a> -->
           </div>
         </div>
       </div>

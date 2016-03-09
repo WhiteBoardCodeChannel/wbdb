@@ -11,7 +11,7 @@ const handleFailure = (cb) => {
 };
 
 module.exports = (app) => {
-  app.factory('user', ['$http', ($http) => {
+  app.factory('user', ['$http', 'auth', ($http, auth) => {
     class User {
       constructor() {}
 
@@ -32,8 +32,19 @@ module.exports = (app) => {
           .then(handleSuccess(cb), handleFailure(cb));
       }
 
-      getUsername(cb) {
-        $http.get('http://localhost:3000/api/currentuser')
+      getUser(cb) {
+        cb = cb || function(){};
+        // $http.get('http://localhost:3000/api/currentuser')
+        $http({
+          method: 'GET',
+          url: 'http://localhost:3000/api/currentuser',
+          headers: {
+            token: auth.getToken()
+          },
+          user: {
+            _id: auth.getUserId()
+          }
+        })
           .then(handleSuccess(cb), handleFailure(cb));
       }
     }

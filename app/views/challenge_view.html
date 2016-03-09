@@ -23,8 +23,10 @@
         <button type="button" name="button" class="viewChal" onclick="">Show Hint</button>
         <button type="button" name="button" class="viewChal" onclick="">Show One Solution</button>
         <button type="button" name="button" class="viewChal" onclick="">Show All Solutions</button>
-        <button type="button" name="button" class="viewChal" ng-show="showAdd" ng-click="showAdd = !showAdd">Add To Favorites</button>
-        <button type="button" name="button" class="viewChal" ng-show="!showAdd" ng-click="showAdd = !showAdd">Remove From Favorites</button>
+        <button data-ng-if="showAdd" data-ng-click="addFavorite()" type="button" name="button" class="viewChal">Add to Favorites</button>
+        <button  data-ng-if="!showAdd" data-ng-click="removeFavorite()" type="button" name="button" class="viewChal">Remove From Favorites</button>
+
+
 
       </section>
     </div>

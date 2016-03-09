@@ -10,7 +10,7 @@ const userRouter = module.exports = exports = express.Router();
 userRouter.get('/currentuser', jwtAuth, jsonParser, (req, res) => {
   User.findOne({ _id: req.user._id }, (err, data) => {
     if (err) return handleDBError(err, res);
-    res.json({ username: data.username });
+    res.json(data);
   });
 });
 
@@ -20,4 +20,3 @@ userRouter.get('/mychallenges', jwtAuth, jsonParser, (req, res) => {
     res.status(200).json(data);
   });
 });
-

@@ -3,7 +3,7 @@ module.exports = function(app) {
     function($scope, $http, Resource, $stateParams, auth) {
 
       $scope.tags = [{tag: "Arrays"}, {tag: "Strings"}, {tag: "Trees"}, {tag: "Queues"},
-        {tag: "Hash Table"}, {tag: "Recursion"}, {tag: "Stacks"}, {tag: "Binary Tree"}];
+        {tag: "Hash Tables"}, {tag: "Recursion"}, {tag: "Stacks"}, {tag: "Binary Trees"}, {tag: "Linked Lists"}];
       $scope.myChallenges = [];
       $scope.favorites = [];
       $scope.newChallenge = {};

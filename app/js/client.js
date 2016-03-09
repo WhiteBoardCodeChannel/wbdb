@@ -35,6 +35,11 @@ wbdbApp.config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'views/user_view.html',
         controller: 'UserController'
       })
+      .state('admin', {
+        url: '/admin',
+        templateUrl: 'views/admin_view.html',
+        controller: 'AdminController'
+      })
       .state('fourohfour', {
         url: '/fourohfour',
         templateUrl: 'views/fourohfour.html'

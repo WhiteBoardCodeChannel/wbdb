@@ -18,7 +18,15 @@ module.exports = function(app) {
         if (err) return console.log(err.data.msg);
         console.log(res);
         $rootScope.loggedIn = true;
-        $location.path('/user');
+
+        if (res.isAdmin) {
+          $rootScope.isAdmin = true;
+          $location.path('/admin');
+        }
+        else {
+          $rootScope.isAdmin = false;
+          $location.path('/user');
+        }
       });
     };
     $scope.register = (user) => {

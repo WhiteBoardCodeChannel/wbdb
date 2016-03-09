@@ -4,9 +4,11 @@
 
 module.exports = function(app) {
   app.controller('ChallengeController', ['$scope', '$http', 'Resource',
-    '$stateParams', ($scope, $http, Resource, $stateParams) => {
+    '$stateParams', 'auth', ($scope, $http, Resource, $stateParams, auth) => {
       $scope.favoriteService = new Resource('/favorites');
       $scope.challengeService = new Resource('/challenges');
+      $scope.currId = auth.getUserId();
+      $scope.hints = [];
 
       $scope.challenge = $stateParams.challengeData;
       if (!$scope.challenge) {
@@ -15,25 +17,39 @@ module.exports = function(app) {
           $scope.challenge = data;
         });
       }
-      $scope.hints = [];
-      $scope.showAdd = true;
+
+      // check which button to show (either add/remove favorite)
+      $scope.checkFavoritedOrNot = (function() {
+        $scope.showAdd = true;
+        $scope.favoriteService.getAll((err, res) => {
+          if (err) return console.log(err);
+          for (var i = 0; i < res.length; i++) {
+            // check if user already favorited this challenge
+            if ($scope.challenge._id === res[i]._id) {
+              $scope.showAdd = false;
+              break;
+            }
+          }
+        });
+      })();
 
       $scope.addFavorite = function() {
+        $scope.showAdd = !$scope.showAdd;
+
+        console.log($scope.currId);
         $scope.favoriteService
           .create({
-            challengeId: challenge._id,
-            userId: user._id
-          }, (err, res) => {
-              if (err) return console.log(err);
+            challengeId: $scope.challenge._id,
+            userId: $scope.currId
+          }, (err) => {
+             if (err) console.log(err);
           });
       };
 
       $scope.removeFavorite = function() {
+        $scope.showAdd = !$scope.showAdd;
         $scope.favoriteService
-          .delete({
-            challengeId: challenge._id,
-            userId: user._id
-          }, (err, res) => {
+          .delete($scope.challenge, (err) => {
           if (err) return console.log(err);
         });
       };
