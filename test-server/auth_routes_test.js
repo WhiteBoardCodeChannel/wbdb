@@ -185,6 +185,5 @@ describe('User Signup authentication Test: ', () => {
    mongoose.connection.db.dropDatabase(() => {
      done();
    });
-
   });
 });
