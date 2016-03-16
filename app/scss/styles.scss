@@ -22,7 +22,7 @@ input {
   font-size: 24px;
   font-family: 'Raleway', sans-serif;
 }
-button, button-primary{
+button, .button-primary{
   font-family: 'Raleway', sans-serif;
   margin-left: 20px;
   float:right;
@@ -34,18 +34,6 @@ button, button-primary{
 .dashboardBtn{
   float: none;
 }
-
-// .searchDB{
-//   background-color: #6B969D;
-//   color: white;
-//   transition: all .25s ease-in;
-// }
-// .searchDB:hover{
-//   background-color: #6B889D;
-//   border: 1px solid #6B889D;
-//   color: white;
-// }
-
 .header span{
   background:none;
   color:#333333;
@@ -58,20 +46,16 @@ button, button-primary{
   background: none;
   border: none;
 }
-
 [class^="icon-"]{
   font-size: 30px;
   font-weight: 700;
 }
-
 .authEmail {
   margin-top: 10px;
 }
-
 .search {
   margin: 40px 0 80px 10px;
 }
-
 .icon-searchMaster{
   margin-left: -34px;
 }
@@ -80,17 +64,14 @@ button, button-primary{
 }
 .row .columns .searchChal{
   min-height: 240px;
-  // overflow: hidden;
 }
 .chalSol {
   min-height: 200px;
   font-family: monospace;
 }
-
 .createdOn{
   margin-bottom: 20px;
 }
-
 form input {
   width: 220px; height: 35px;
   margin: 10px 0;
@@ -113,11 +94,9 @@ form input {
   border-bottom: 3px solid #434343;
   min-height: 200px;
 }
-
 .chalh1{
   margin-top: -10px;
 }
-
 .chalType {
   margin-top: 10px;
   height: 123px;
@@ -136,20 +115,23 @@ textarea {
   min-height: 140px;
   font-family: monospace;
 }
-
 label{
   font-weight: 700;
 }
-
 .pullUp{
   margin-top: 42px;
 }
-
 .pullDown{
   margin-top: 40px;
 }
-
-
+.submitBtns{
+  input{
+    width: 150px;
+  }
+  button {
+    width: 150px;
+  }
+}
 .searchChal{
   background: #fff;
   border: 2px dotted #ccc;
@@ -182,7 +164,6 @@ label{
   right: 20px;
   font-size: 12px;
 }
-
 .favBack, .mychalBack{
   background: #d3d3d3;
   padding: 10px;
@@ -199,4 +180,15 @@ footer p{
 }
 .hljs {
   margin-left: 0px;
+}
+.submitBtns {
+  input{
+    color: #fff;
+    background-color: #6B969D;
+    border-color: #6B969D;
+    transition: .25s all ease-in;
+  }
+  button{
+    float: none;
+  }
 }

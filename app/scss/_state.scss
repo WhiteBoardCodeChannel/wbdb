@@ -1,5 +1,5 @@
 /* No Larger than mobile */
-@media (max-width: 400px) {
+@media (max-width: 550px) {
   header button{
     margin: 0;
   }
@@ -23,7 +23,6 @@
   .icon-search{
     padding: 0px 0 0 10px;
   }
-
   input[type="text"], input[type="password"], input[type="email"] {
     height: 60px;
     width: 236px;
@@ -44,6 +43,22 @@
   }
   input[type="submit"]{
     margin: 0 0 0 75px;
+  }
+  input[type="submit"] .submitSol{
+    margin-bottom: 0;
+  }
+  .submitBtns{
+    input{
+      float: left;
+      margin-left: 15px;
+    }
+    button{
+      float: right;
+      margin-left: 15px;
+    }
+  }
+  .sol-form {
+    margin-bottom: -10px;
   }
   .chalh1{
     margin-left: 10px;
@@ -68,19 +83,26 @@
     margin-top: 20px;
   }
   .viewChal{
-    margin-right: -21px;
+    margin-right: -5px;
   }
   .viewChalSol {
     margin-right: -21px;
   }
-
+  .searchChal{
+    margin-top: 40px;
+  }
 }
 
 /* Larger than phablet (also point when grid becomes active) */
-@media (min-width: 550px) {}
+@media (min-width: 550px) {
+  .submitBtns button {
+    margin-left: 0px;
+    // margin-right: -25px;
+  }
+}
 
 /* No Larger than tablet */
-@media (max-width: 770px) {
+@media (max-width: 740px) {
   .rw-sentence{
     margin-bottom: 50px;
   }
@@ -107,11 +129,10 @@
 }
 
 /* Larger than desktop */
-@media (min-width: 1000px) {
+@media (min-width: 960px) {
   .viewChal{
     margin-right: 10px;
   }
-
   .viewChalSol{
     margin-right: 60px;
   }
@@ -143,9 +164,9 @@
     float: left;
     margin: -71px 714px 0 25px;
   }
-  // .icon-search{
-  //   padding-top: 4px;
-  // }
+  .icon-search{
+    padding-top: 4px;
+  }
   .icon-search{
     padding: 4px 0 0 26px;
   }

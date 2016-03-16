@@ -19,31 +19,35 @@
           <button type="button" name="button" class="viewChal" data-ng-if="showAdd && !isAdmin && loggedIn" data-ng-click="addFavorite()">Add to Favorites</button>
           <button type="button" name="button" class="viewChal" data-ng-if="!showAdd && !isAdmin && loggedIn" data-ng-click="removeFavorite()" >Remove From Favorites</button>
 
+        </div>
+
+        <p data-ng-init="getFavoriteCount()"><strong>Favorited:</strong> {{favCount}} times</p>
+
       </section>
     </div>
   </div>
 
   <p class="solutionMsg" data-ng-if="noSolutions">There have not yet been any solutions published for this challenge. You could be the first!</p>
 
-  <div class="row">
+  <div class="row new-solution">
     <div class="twelve columns" data-ng-if="showSubmitForm">
-          <h1>Submit a New Solution</h1>
-          <form data-ng-submit="submitSolution(newSolution)">
-            <div class="row">
-              <div class="eight columns">
-                <textarea
-                  data-ng-model="newSolution.solution"
-                  name="solutionInput"
-                  class="u-full-width tall"
-                  placeholder="Enter Challenge Solution …"
-                  ></textarea>
-              </div>
-              <div class="four columns">
-                <input class="button-primary pullUp" type="submit" value="Submit">
-                <button data-ng-click="hideForm()">Cancel</button>
-              </div>
-            </div>
-          </form>
+      <h1>Submit a New Solution</h1>
+      <form data-ng-submit="submitSolution(newSolution)">
+        <div class="row">
+          <div class="nine columns sol-form">
+            <textarea
+              data-ng-model="newSolution.solution"
+              name="solutionInput"
+              class="u-full-width tall"
+              placeholder="Enter Challenge Solution …"
+              ></textarea>
+          </div>
+          <div class="three columns submitBtns">
+            <input class="pullUp submitSol" type="submit" value="Submit">
+            <button class="cancelSol" data-ng-click="hideForm()">Cancel</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 

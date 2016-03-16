@@ -35,7 +35,6 @@ favoriteRouter.post('/favorites', jwtAuth, jsonParser, (req, res) => {
 });
 
 favoriteRouter.get('/favorites', jwtAuth, jsonParser, (req, res) => {
-  console.log(req.user._id);
   Favorite.find({ userId: req.user._id }).exec()
     .then((favorites) => {
       const favIds = favorites.map((fav) => fav.challengeId);
@@ -45,8 +44,17 @@ favoriteRouter.get('/favorites', jwtAuth, jsonParser, (req, res) => {
     .catch((err) => handleDBError(err, res));
 });
 
+favoriteRouter.get('/favorites/:id', jsonParser, (req, res) => {
+  Favorite.find({ challengeId: req.params.id }).exec()
+    .then((favorites) => {
+      return favorites.length;
+    })
+    .then((favCount) => res.status(200).json(favCount))
+    .catch((err) => handleDBError(err, res));
+});
+
 favoriteRouter.delete('/favorites/:id', jwtAuth, jsonParser, (req, res) => {
-  Favorite.remove({ challengeId: req.params.id }, (err) => {
+  Favorite.remove({ challengeId: req.params.id, userId: req.user._id }, (err) => {
     if (err) return handleDBError(err, res);
     res.status(200).json({ msg: 'Successfully Deleted Challenge' });
   });

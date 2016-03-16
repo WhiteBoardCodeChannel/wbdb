@@ -2,10 +2,12 @@ module.exports = function(app) {
   app.controller('ChallengeController', ['$rootScope', '$scope', '$location',
   '$http', 'Resource', '$stateParams', 'auth', 'user', ($rootScope, $scope,
     $location, $http, Resource, $stateParams, auth, user) => {
+
       $scope.solutions = [];
       $scope.hints = [];
       $scope.tags = [];
       $scope.newSolution = {};
+
       $scope.showSolutions = false;
       $scope.showSubmitForm = false;
       $scope.noSolutions = false;
@@ -41,6 +43,18 @@ module.exports = function(app) {
         });
       })();
 
+      $scope.getFavoriteCount = function() {
+        var temp;
+        if (!$scope.challenge) temp = $stateParams.id;
+        else temp = $scope.challenge._id;
+        console.log(temp);
+        $scope.favoriteService.getOne(temp, (err, res) => {
+          if (err) return console.log(err);
+          console.log(res);
+          $scope.favCount = res;
+        });
+      };
+
       $scope.publish = function() {
         $scope.challengeService.update({
           _id: $scope.challenge._id,
@@ -53,13 +67,13 @@ module.exports = function(app) {
 
       $scope.addFavorite = function() {
         $scope.showAdd = !$scope.showAdd;
-
         $scope.favoriteService
           .create({
             challengeId: $scope.challenge._id,
             userId: $scope.currId
           }, (err) => {
              if (err) console.log(err);
+             $scope.getFavoriteCount();
           });
       };
 
@@ -68,6 +82,7 @@ module.exports = function(app) {
         $scope.favoriteService
           .delete($scope.challenge, (err) => {
           if (err) return console.log(err);
+          $scope.getFavoriteCount();
         });
       };
 
@@ -129,14 +144,12 @@ module.exports = function(app) {
             createdOn: currentDate.toLocaleTimeString('en-us', options),
             userId: $scope.currId,
             author: res.username
-            }, (err, res) => {
+            }, (err) => {
               if (err) return console.log(err);
-              // $scope.solutions.push(res);
               $scope.newSolution = null;
               $scope.showSubmitForm = false;
           });
         });
-
       };
 
   }]);
