@@ -19,10 +19,17 @@ wbdbApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'HomeController',
         authenticate: false
       })
-      .state('search', {
-        url: '/search/:id',
-        templateUrl: 'views/search_view.html',
-        controller: 'SearchController',
+      .state('searchByUser', {
+        url: '/search/user/:id',
+        templateUrl: 'views/searchuser_view.html',
+        controller: 'SearchUserController',
+        params: { id: { value: null, squash: false } },
+        authenticate: false
+      })
+      .state('searchByTag', {
+        url: '/search/tag/:id',
+        templateUrl: 'views/searchtag_view.html',
+        controller: 'SearchTagController',
         params: { id: { value: null, squash: false } },
         authenticate: false
       })

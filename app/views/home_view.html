@@ -6,7 +6,7 @@
       <div class="rw-words rw-words-1">
         <span>arrays?</span>
         <span>strings?</span>
-        <span>linked list?</span>
+        <span>linked lists?</span>
         <span>trees?</span>
       </div>
     </h2>
@@ -28,8 +28,10 @@
           <button type="button" name="button" class="viewChal viewChalChal"
   data-ng-click="redirect(challenge._id)">Select</button>
         <p>{{challenge.question}}</p>
-        <p><strong>Submitted by:</strong> <a data-ng-click="searchAuthor(challenge.author)">{{challenge.author}}</a></p>
-        <p>Tags: {{challenge.tags.join()}}</p>
+        <p><strong>Submitted by:</strong> <a data-ng-click="searchUser(challenge.author)">{{challenge.author}}</a></p>
+        <p>Tags:
+          <a data-ng-repeat="tag in challenge.tags" data-ng-click="searchTag(tag)">{{tag}}, </a>
+        </p>
       </section>
     </div>
   </div>

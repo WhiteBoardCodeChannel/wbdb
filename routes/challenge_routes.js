@@ -54,20 +54,22 @@ challengeRouter.get('/userchallenges/:id', (req, res) => {
 });
 
 challengeRouter.get('/challenges/:id', (req, res) => {
+  console.log('retrieving individual challenge');
   Challenge.findOne({ _id: req.params.id }).exec()
     .then((challenge) => {
       const challengeId = challenge._id;
       const solutionProm = Solution.find({ challengeId }).exec();
       const hintProm = Hint.find({ challengeId }).exec();
-      // const tagProm = Tag.find({ challengeId }).exec();
+      const tagProm = Tag.find({ challengeId }).exec();
 
-      return Promise.all([solutionProm, hintProm])
+      return Promise.all([solutionProm, hintProm, tagProm])
         .then((resolutions) => {
+          console.log(resolutions);
           const solutions = resolutions[0];
           const hints = resolutions[1];
-          // const tags = resolutions[2];
+          const tags = resolutions[2];
           res.status(200).json(Object.assign(challenge.toObject(),
-            { solutions, hints }));
+            { solutions, hints, tags }));
         });
     })
     .catch((err) => handleDBError(err, res));

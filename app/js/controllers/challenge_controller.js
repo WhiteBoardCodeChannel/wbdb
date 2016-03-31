@@ -6,22 +6,31 @@ module.exports = function(app) {
       $scope.solutions = [];
       // $scope.hints = [];
       // $scope.tags = [];
+      $scope.tags = [{ tag: 'Arrays' }, { tag: 'Strings' }, { tag: 'Trees' },
+        { tag: 'Queues' }, { tag: 'Hash Tables' }, { tag: 'Recursion' },
+        { tag: 'Stacks' }, { tag: 'Binary Trees' }, { tag: 'Linked Lists' },
+        { tag: 'Graphs' }, { tag: 'Heaps' }, { tag: 'Sort' }, { tag: 'Search' }];
       $scope.newSolution = {};
 
       $scope.showSolutions = false;
       $scope.showSubmitForm = false;
       $scope.noSolutions = false;
+      $scope.showTagForm = false;
 
       $scope.challengeService = new Resource('/challenges');
       $scope.solutionService = new Resource('/solutions');
       $scope.favoriteService = new Resource('/favorites');
       // $scope.hintService = new Resource('/hints');
-      // $scope.tagService = new Resource('/tags');
+      $scope.tagService = new Resource('/tags');
 
       $scope.currId = auth.getUserId();
 
-      $scope.searchAuthor = function(username) {
-        $location.path('/search/' + username);
+      $scope.searchUser = function(user) {
+        $location.path('/search/user/' + user);
+      };
+
+      $scope.searchTag = function(tag) {
+        $location.path('/search/tag/' + tag);
       };
 
       $scope.getChallenge = function() {
@@ -97,6 +106,14 @@ module.exports = function(app) {
 
       $scope.hideForm = function() {
         $scope.showSubmitForm = false;
+      };
+
+      $scope.showTags = function() {
+        $scope.showTagForm = true;
+      };
+
+      $scope.hideTags = function() {
+        $scope.showTagForm = false;
       };
 
       $scope.getAllSolutions = function() {

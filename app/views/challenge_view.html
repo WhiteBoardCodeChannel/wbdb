@@ -6,8 +6,10 @@
 
         <h2>{{challenge.title}}</h2><span>{{challenge.difficulty}}</span>
         <p>{{challenge.question}}</p>
-        <p><strong>Submitted by:</strong> <a data-ng-click="searchAuthor(challenge.author)">{{challenge.author}}</a></p>
-        <p><strong>Tags:</strong> {{challenge.tags.join()}}</p>
+        <p><strong>Submitted by:</strong> <a data-ng-click="searchUser(challenge.author)">{{challenge.author}}</a></p>
+        <p>Tags:
+          <a data-ng-repeat="tag in challenge.tags" data-ng-click="searchTag(tag.tag)">{{tag.tag}}, </a>
+        </p>
 
         <div class="row pullDown challengeBtns">
 
@@ -16,6 +18,7 @@
           <button type="button" name="button" class="viewChal" data-ng-if="!isAdmin && !showSubmitForm && loggedIn" data-ng-click="showForm()">Submit a Solution</button>
           <button type="button" name="button" class="viewChal" data-ng-if="isAdmin && !challenge.published" data-ng-click="publish()">Publish</button>
           <!-- <button type="button" name="button" class="viewChal" data-ng-if="isAdmin && challenge.published" data-ng-click="unpublish()">Unpublish</button> -->
+          <button type="button" name="button" class="viewChal" data-ng-if="isAdmin && !showTagForm && loggedIn" data-ng-click="showTags()">Add Tag</button>
           <button type="button" name="button" class="viewChal" data-ng-if="showAdd && !isAdmin && loggedIn" data-ng-click="addFavorite()">Add Favorite</button>
           <button type="button" name="button" class="viewChal" data-ng-if="!showAdd && !isAdmin && loggedIn" data-ng-click="removeFavorite()">Remove Favorite</button>
 
@@ -52,11 +55,44 @@
     </div>
   </div>
 
+  <div class="row new-solution">
+    <div class="twelve columns" data-ng-if="showTagForm">
+      <h1>Assign a Tag</h1>
+      <form data-ng-submit="submitTag(newTag)">
+        <div class="row">
+          <div class="four columns sol-form">
+            <select
+              data-ng-model="newTag.tags"
+              multiple
+              name="tags"
+              data-ng-options="tag.tag for tag in tags"
+              class="u-full-width chalType">
+            </select>
+          </div>
+
+          <div class="four columns sol-form">
+            <textarea
+              data-ng-model="newTag.tag"
+              name="solutionInput"
+              class="u-full-width tall"
+              placeholder="Enter a New Tag"
+              ></textarea>
+          </div>
+
+          <div class="four columns submitBtns">
+            <input class="pullUp submitSol" type="submit" value="Submit">
+            <button class="cancelSol" data-ng-click="hideTags()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div class="twelve columns">
     <section data-ng-if="showSolutions" class="searchChal" data-ng-repeat="solution in solutions">
       <h2>Solution #{{solution.count}}</h2>
       <div hljs source='solution.solution' language='javascript'></div>
-      <p><strong>Submitted by:</strong> <a data-ng-click="searchAuthor(solution.author)">{{solution.author}}</a> on {{solution.createdOn}}</p>
+      <p><strong>Submitted by:</strong> <a data-ng-click="searchUser(solution.author)">{{solution.author}}</a> on {{solution.createdOn}}</p>
     </section>
   </div>
 

@@ -54,9 +54,11 @@
         <button type="button" name="button" class="viewChal viewChalChal"
   data-ng-click="redirect(favorite._id)">Select</button>
         <p>{{favorite.question}}</p>
-        <p><strong>Submitted by:</strong> <a data-ng-click="searchAuthor(favorite.author)">{{favorite.author}}</a></p>
+        <p><strong>Submitted by:</strong> <a data-ng-click="searchUser(favorite.author)">{{favorite.author}}</a></p>
         <p style="margin-bottom:20px;"><strong>Created on:</strong> {{favorite.createdOn}}</p>
-        <p><strong>Tags:</strong> {{favorite.tags.join()}}</p>
+        <p>Tags:
+          <a data-ng-repeat="tag in favorite.tags" data-ng-click="searchTag(tag)">{{tag}}, </a>
+        </p>
       </section>
     </div>
 
@@ -79,7 +81,9 @@
             data-ng-click="redirect(challenge._id)">Select</button>
           <p>{{challenge.question}}</p>
           <p><strong>Created:</strong> {{challenge.createdOn}}</p>
-          <p><strong>Tags:</strong> {{challenge.tags.join()}}</p>
+          <p>Tags:
+            <a data-ng-repeat="tag in challenge.tags" data-ng-click="searchTag(tag)">{{tag}}, </a>
+          </p>
         </section>
 
         <h2>My Solutions</h2>
