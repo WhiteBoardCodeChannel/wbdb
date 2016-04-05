@@ -14,14 +14,17 @@ describe('Admin Routes', () => {
   before((done) => {
     this.server = server(4000, done);
   });
+
   after((done) => {
     this.server.close(done);
   });
+
   after((done) => {
     mongoose.connection.db.dropDatabase(() => {
       done();
     });
   });
+
   describe('fail to login if user is not admin', () => {
     before((done) => {
       var notAdminUser = new User();
@@ -34,6 +37,7 @@ describe('Admin Routes', () => {
         done();
       });
     });
+
     it('should fail non-admin user to log in', (done) => {
       chai.request(baseUri)
         .get('/api/admin/challenges')

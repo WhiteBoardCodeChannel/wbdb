@@ -10,6 +10,7 @@ describe('JSON Web Token authenticat Test', () => {
         authorization: 'Bearer '
       }
     };
+
     var res = {
       status: function(statusCode) {
         expect(statusCode).to.equal(401);
@@ -20,7 +21,9 @@ describe('JSON Web Token authenticat Test', () => {
         };
       }
     };
+
     var next = function() {};
+
     jwtAuth(req, res, next);
   });
 });

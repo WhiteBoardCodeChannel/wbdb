@@ -3,16 +3,20 @@ var angular = require('angular');
 
 describe('admin service', () => {
   beforeEach(angular.mock.module('wbdbApp'));
+
   var admin;
   var $httpBackend;
   var plugin = false;
+
   beforeEach(angular.mock.inject((_admin_, _$httpBackend_) => {
     admin = _admin_;
     $httpBackend = _$httpBackend_;
   }));
+
   it('should be a service', () => {
     expect(typeof admin).toBe('object');
   });
+
   it('getChallenges to get challenges', () => {
     $httpBackend.expectGET('http://localhost:3000/api/admin/challenges')
       .respond(200, [{ title: 'challenge1' }, { title: 'challenge2' }]);
@@ -25,6 +29,7 @@ describe('admin service', () => {
     $httpBackend.flush();
     expect(plugin).toBe(true);
   });
+
   it('getSolutions to get solutions', () => {
     $httpBackend.expectGET('http://localhost:3000/api/admin/solutions')
       .respond(200, [{ title: 'solution1' }, { title: 'solution2' }]);
@@ -37,6 +42,7 @@ describe('admin service', () => {
     $httpBackend.flush();
     expect(plugin).toBe(true);
   });
+
   it('getSolutionChallenge', () => {
     $httpBackend.expectGET('http://localhost:3000/api/solutions/1')
       .respond(200, { title: 'solution1' });
@@ -48,6 +54,7 @@ describe('admin service', () => {
      $httpBackend.flush();
      expect(plugin).toBe(true);
   });
+
   it('should handle error', () => {
     $httpBackend.expectGET('http://localhost:3000/api/admin/challenges')
       .respond(404);

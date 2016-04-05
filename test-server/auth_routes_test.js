@@ -13,14 +13,17 @@ describe('the authorization route', () => {
   before((done) => {
     this.server = server(4000, done);
   });
+
   after((done) => {
     this.server.close(done);
   });
+
   after((done) => {
-   mongoose.connection.db.dropDatabase(() => {
+    mongoose.connection.db.dropDatabase(() => {
      done();
-   });
+    });
   });
+
   describe('User Signup authentication Test: ', () => {
     it('should create a new user with a POST request', (done) => {
       chai.request(baseUri)
@@ -39,6 +42,7 @@ describe('the authorization route', () => {
         done();
       });
     });
+
     it('should fail to signup if user did not enter a email', (done) => {
       var invalidUser = {
         username: 'test',
@@ -56,6 +60,7 @@ describe('the authorization route', () => {
         done();
       });
     });
+
     it('should fail to signup if user did not enter a valid email', (done) => {
       var invalidUser = {
         username: 'test',
@@ -73,6 +78,7 @@ describe('the authorization route', () => {
           done();
         });
     });
+
     it('should fail to signup if user did not enter a username', (done) => {
       var invalidUser = {
         username: '',
@@ -90,6 +96,7 @@ describe('the authorization route', () => {
           done();
         });
      });
+
      it('should fail to signup if user enter a password < 7 charachters',
        (done) => {
          var invalidUser = {
@@ -109,6 +116,7 @@ describe('the authorization route', () => {
              done();
            });
        });
+
        it('should fail to signup if passwords are not same',
          (done) => {
            var invalidUser = {
@@ -128,6 +136,7 @@ describe('the authorization route', () => {
                done();
              });
          });
+
        it('should be able to check whether the user already exist for signup',
          (done) => {
            var sameUser = {
@@ -161,6 +170,7 @@ describe('the authorization route', () => {
         done();
       });
     });
+
     it('should check if the user has valid credentials', (done) => {
       chai.request(baseUri)
         .get('/api/signin')

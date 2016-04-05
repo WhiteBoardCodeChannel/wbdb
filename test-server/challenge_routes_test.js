@@ -33,9 +33,9 @@ describe('challege routes', () => {
   });
 
   after((done) => {
-   mongoose.connection.db.dropDatabase(() => {
-     done();
-   });
+    mongoose.connection.db.dropDatabase(() => {
+      done();
+    });
   });
 
   it('should be able to create a new post', (done) => {
@@ -51,6 +51,7 @@ describe('challege routes', () => {
         done();
       });
   });
+
   describe('rest requests that require a challenge already in db', () => {
     beforeEach((done) => {
       Challenge.create({
@@ -63,6 +64,7 @@ describe('challege routes', () => {
         done();
       });
     });
+
     it('should be able to get all of a user\'s challenges', (done) => {
       chai.request(baseUri)
         .get('/api/challenges')
@@ -90,6 +92,7 @@ describe('challege routes', () => {
           done();
         });
     });
+
     it('should be able to update a challenge', (done) => {
       chai.request(baseUri)
         .put(`/api/challenges/${this.testChallenge._id}`)
@@ -102,6 +105,7 @@ describe('challege routes', () => {
           done();
         });
     });
+
     it('should be able to delete a post', (done) => {
       chai.request(baseUri)
         .delete(`/api/challenges/${this.testChallenge._id}`)

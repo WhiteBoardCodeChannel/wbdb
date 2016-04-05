@@ -9,6 +9,7 @@ describe('resource service', () => {
   var Resource;
   var testResource;
   var called;
+
   beforeEach(angular.mock.inject((_$httpBackend_, _Resource_) => {
     $httpBackend = _$httpBackend_;
     Resource = _Resource_;

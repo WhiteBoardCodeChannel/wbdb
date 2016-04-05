@@ -3,16 +3,20 @@ var angular = require('angular');
 
 describe('user service', () => {
   beforeEach(angular.mock.module('wbdbApp'));
+
   var User;
   var $httpBackend;
   var plugin = false;
+
   beforeEach(angular.mock.inject((_user_, _$httpBackend_) => {
     User = _user_;
     $httpBackend = _$httpBackend_;
   }));
+
   it('should be a service', () => {
     expect(typeof User).toBe('object');
   });
+
   it('createUser', () => {
     var user = {
       username: 'test',
