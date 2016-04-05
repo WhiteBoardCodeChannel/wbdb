@@ -5,6 +5,7 @@ const Solution = require(__dirname + '/../models/solution');
 const handleDBError = require(__dirname + '/../lib/handle_db_error');
 const solutionRouter = module.exports = exports = express.Router();
 
+// get all solutions for a given challenge
 solutionRouter.get('/solutions', jsonParser, (req, res) => {
   Solution.find({ challengeId: req.body.challengeId }, (err, data) => {
     if (err) return handleDBError(err, res);
@@ -12,6 +13,7 @@ solutionRouter.get('/solutions', jsonParser, (req, res) => {
   });
 });
 
+// get published solutions for a given challenge
 solutionRouter.get('/solutions/:id', (req, res) => {
   Solution.find({ challengeId: req.params.id, published: true }).exec()
     .then((solutions) => {
@@ -20,6 +22,7 @@ solutionRouter.get('/solutions/:id', (req, res) => {
     .catch((err) => handleDBError(err, res));
 });
 
+// get solutions published by a specific user
 solutionRouter.get('/usersolutions/:id', (req, res) => {
   Solution.find({ author: req.params.id, published: true }, (err, data) => {
     if (err) return handleDBError(err, res);

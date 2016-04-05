@@ -15,8 +15,9 @@ tagRouter.get('/tags', (req, res) => {
   });
 });
 
+// find all tags where tag is :id
 tagRouter.get('/tags/:id', (req, res) => {
-  Tag.find({ tag: req.params.id }).exec() // find all tags where tag is :id
+  Tag.find({ tag: req.params.id }).exec()
     .then((tags) => {
       const tagPromises = tags.map((tag) => {
         const challengeId = tag.challengeId;

@@ -9,7 +9,8 @@ module.exports = function(app) {
       $scope.tags = [{ tag: 'Arrays' }, { tag: 'Strings' }, { tag: 'Trees' },
         { tag: 'Queues' }, { tag: 'Hash Tables' }, { tag: 'Recursion' },
         { tag: 'Stacks' }, { tag: 'Binary Trees' }, { tag: 'Linked Lists' },
-        { tag: 'Graphs' }, { tag: 'Heaps' }, { tag: 'Sort' }, { tag: 'Search' }];
+        { tag: 'Graphs' }, { tag: 'Heaps' }, { tag: 'Sort' },
+        { tag: 'Search' }];
       $scope.newSolution = {};
 
       $scope.showSolutions = false;
